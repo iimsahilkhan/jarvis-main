@@ -4,8 +4,32 @@ import sqlite3
 con = sqlite3.connect("lisa.db")
 cursor = con.cursor()
 
-query = "CREATE TABLE IF NOT EXISTS sys_command(id integer primary key, name VARCHAR(100), path VARCHAR(1000))"
-cursor.execute(query)
+# Create tables if they don't exist
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS contacts (
+        name TEXT,
+        mobile_no TEXT
+    )
+''')
+
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS sys_command (
+        name TEXT,
+        path TEXT
+    )
+''')
+
+cursor.execute('''
+    CREATE TABLE IF NOT EXISTS web_command (
+        name TEXT,
+        url TEXT
+    )
+''')
+
+con.commit()
+
+# query = "CREATE TABLE IF NOT EXISTS sys_command(id integer primary key, name VARCHAR(100), path VARCHAR(1000))"
+# cursor.execute(query)
 
 # query = "INSERT INTO sys_command VALUES (null,'one note', 'C:\\Program Files\\Microsoft Office\\root\\Office16\\ONENOTE.exe')"
 # cursor.execute(query)

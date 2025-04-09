@@ -12,7 +12,7 @@ def start():
     playAssistantSound()
     @eel.expose
     def init():
-        subprocess.call([r'device.bat'])
+        # Skip device.bat execution
         eel.hideLoader()
         # Temporarily skip face authentication
         eel.hideFaceAuth()
@@ -20,6 +20,6 @@ def start():
         speak("Hello, Welcome Sir, How can i Help You")
         eel.hideStart()
         playAssistantSound()
-    os.system('start chrome.exe --app="http://localhost:8000/index.html"')
-
-    eel.start('index.html', mode=None, host='localhost', block=True)
+    
+    # Use default browser instead of Chrome app mode
+    eel.start('index.html', mode='default', host='localhost', port=8000, block=True)
